@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Firebase Train Management</title>
+	<meta charset="UTF-8">
+	<meta name="view-port" content="initial-scale=1.0 width=device-width"/>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/modal.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.right{
+			min-height:70vh;
+			}
+	</style>
+	<script>
+		function about(){
+			alert("Train Management System\nSupported by Firebase\nCreated by Ariel Del Rosario");
+		}
+	</script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
+</head>
+<body>
+<!--navigation header-->
+	<div class="header">
+		<nav>
+			<ul>
+				<li><a href='index.html'>Train Managamenent System</a></li>
+				<li class='menu_left' onclick="about();"><a href="#">About Me</a></li>
+			</ul>
+		</nav>
+	</div>
+	<!--page body-->
+	<div class="body">
+		<div class="page-content">
+			<div class="left">
+				<div class="mPic">
+					<img src="assets/images/railway.jpg" alt="Game" width="100%" height="250px"/><br/>
+					<h3>User Status</h3>
+					<p class="user"></p>
+				</div>
+			</div>
+			<div class="right">
+				<div class="dtails">
+					  <div class="panel panel-info">
+						  <div class="panel-heading">
+							Current Train Schedule
+						  </div>
+						  <div class="panel-body">
+							  <p>Click on a table row to edit or delete</p>
+								<div class="table-responsive">
+								  
+									  <table class="table">
+										<thead>
+										  <tr>
+											<th>Train Key</th>
+											<th>Train Name</th>
+											<th>Destination</th>
+											<th>Frequency(min)</th>
+											<th>Next Arrival</th>
+											<th>Minutes Away</th>
+										  </tr>
+										</thead>
+										<tbody class="tbody">
+										  
+										</tbody>
+									  </table>
+								  
+								</div>
+						  </div>
+					 </div>
+					 
+					 <div class="panel panel-warning">
+						  <div class="panel-heading">
+							Add New Train
+						  </div>
+						  <div class="panel-body">
+							<form method="POST" onsubmit="return addTrain();" name="form">
+							  <div class="form-group">
+								<label for="trainName">Train Name:</label>
+								<input type="text" class="form-control" id="trainName" required>
+							  </div>
+							  <div class="form-group">
+								<label for="destination">Destination:</label>
+								<input type="text" class="form-control" id="destination" required>
+							  </div>
+							  <div class="form-group">
+								<label for="firstTrainTime">First Train Time(HH:mm-military time):</label>
+								<input type="text" class="form-control" id="firstTrainTime" required>
+							  </div>
+							  <div class="form-group">
+								<label for="frequency">Frequency(min):</label>
+								<input type="text" class="form-control" id="frequency" required>
+							  </div>
+							  <button type="submit" class="btn btn-primary">Submit</button>
+							</form>
+		
+						  </div>
+					 </div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			Copyright &copy; Ariel Del Rosario
+		</footer>
+	</div>
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Edit/Delete Train</h2>
+    </div>
+    <div class="modal-body">
+      <form method="POST" name="edit">
+		  <div class="form-group">
+			<label for="key">Train Key:</label>
+			<input type="text" class="form-control" id="key" readonly>
+		  </div>
+		  <div class="form-group">
+			<label for="trainName">Train Name:</label>
+			<input type="text" class="form-control" id="edit_trainName" required>
+		  </div>
+		  <div class="form-group">
+			<label for="destination">Destination:</label>
+			<input type="text" class="form-control" id="edit_destination" required>
+		  </div>
+		  <div class="form-group">
+			<label for="frequency">Frequency(min):</label>
+			<input type="text" class="form-control" id="edit_frequency" required>
+		  </div>
+		  <button type="button" name="edit_submit" class="btn btn-primary" onclick="updateTrain();">Update</button>
+		  <button type="button" name="delete_submit" class="btn btn-success" onclick="removeTrain();">Delete</button>
+		</form>
+    </div>
+  </div>
+
+</div>
+<script type="text/javascript" src="assets/javascript/train.js"></script>
+</body>
+</html>
+
